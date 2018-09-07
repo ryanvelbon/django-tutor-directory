@@ -5,7 +5,12 @@ from django.conf import settings
 import django
 django.setup()
 
-from app.models import Locality
+from app.models import Locality, Tutor
+
+import random
+from faker import Faker
+
+fakegen = Faker()
 
 def populate_locality():
     """populates users.models.Locality"""
@@ -21,5 +26,45 @@ def populate_locality():
         )[0]
     print("complete")
 
+def populate_tutor(n=5):
+
+    Tutor.objects.all().delete()
+
+    for entry in range(n):
+        full_name = fakegen.name()
+        p = Tutor.objects.get_or_create(
+            title = Tutor.TITLE_CHOICES[random.randint(0,len(Tutor.TITLE_CHOICES)-1)][0],
+            first_name = full_name.split(" ")[0],
+            last_name = full_name.split(" ")[-1],
+            address = fakegen.city(),
+            locality = random.choice(Locality.objects.all()),
+
+            bio = fakegen.paragraph(
+                nb_sentences = 10,
+                variable_nb_sentences = True,
+                ext_word_list = None,
+            ),
+
+            tel = '%s%s' % (
+                random.choice(['21', '23', '27']),
+                "{0:0=6d}".format(random.randint(0,999999))
+            ),
+
+            mob = '%s%s' % (
+                random.choice(['79', '99']),
+                "{0:0=6d}".format(random.randint(0,999999))
+            ),
+
+            email = fakegen.email(),
+        )[0]
+
+
+# def populate_tutorsubjects():
+#     pass
+
 if __name__ == '__main__':
-    populate_locality()
+    # populate_locality()
+    print("populating Tutor module with dummy data...")
+    populate_tutor(50)
+    print("complete")
+    # populate_tutorsubjects()

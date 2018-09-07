@@ -13,8 +13,11 @@ class PricesView(TemplateView):
 
 class RegisterView(CreateView):
     form_class = RegisterForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('register_subjects')
     template_name = 'register.html'
+
+class RegisterSubjectsView(TemplateView):
+    template_name = 'register_subjects.html'
 
 class TutorDetailView(DetailView):
     model = Tutor
