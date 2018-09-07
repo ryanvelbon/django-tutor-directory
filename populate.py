@@ -5,7 +5,7 @@ from django.conf import settings
 import django
 django.setup()
 
-from app.models import Locality, Tutor
+from app.models import Locality, Subject, Tutor
 
 import random
 from faker import Faker
@@ -13,7 +13,7 @@ from faker import Faker
 fakegen = Faker()
 
 def populate_locality():
-    """populates users.models.Locality"""
+    """populates app.models.Locality"""
 
     Locality.objects.all().delete()
     LOCALITIES = ['Attard','Bahar ic-Caghaq','Bahrija','Balzan','Bidnija','Birguma','Birkirkara','Birzebbugia','Blata l-Bajda','Bugibba','Burmarrad','Buskett','Cirkewwa','Cospicua','Dingli','Dwejra','Fgura','Fleur-de-Lys','Floriana','Ghajn Tuffieha','Gharghur','Ghaxaq','Gnejna','Gudja','Gwardamangia','Gzira','Hal Farrug','Hal-Far','Hamrun','Ibrag','Ibrag, High Ridge','Ibrag, Victoria Gardens','Iklin','Kalafrana','Kalkara',
@@ -26,7 +26,33 @@ def populate_locality():
         )[0]
     print("complete")
 
+def populate_subject():
+    """populates app.models.Subject"""
+
+    Subject.objects.all().delete()
+
+    # List generated from scripts/subject_list_academic.py
+    ACADEMIC_SUBJECTS = ['ACCOUNTING', 'ARABIC', 'ART', 'BIOLOGY', 'BUSINESS STUDIES', 'CHEMISTRY', 'CLASSICAL CULTURE', 'COMMERCE', 'COMPUTING', 'DESIGN AND TECHNOLOGY', 'ECONOMICS', 'ENGLISH LANGUAGE', 'ENGLISH LITERATURE', 'ENVIRONMENTAL STUDIES', 'ETHICS', 'EUROPEAN STUDIES', 'FRENCH', 'GEOGRAPHY', 'GERMAN', 'GRAPHICAL COMMUNICATION', 'GREEK', 'HISTORY', 'HOME ECONOMICS', 'IL-MALTI', 'ITALIAN', 'LATIN', 'MATHEMATICS', 'MUSIC', 'PHYSICAL EDUCATION', 'PHYSICS', 'RELIGIOUS KNOWLEDGE',
+        'RUSSIAN', 'SOCIAL STUDIES', 'SPANISH', 'TEXTILES AND DESIGN']
+    # List generated from scripts/subject_list_academic.py
+    SPORTS_SUBJECTS = []
+    # List generated from scripts/subject_list_academic.py
+    MUSIC_SUBJECTS = []
+
+    for subject in ACADEMIC_SUBJECTS:
+        p = Subject.objects.get_or_create(
+            category = "academic",
+            name = subject,
+        )[0]
+
+    # similar loop for sports subjects
+
+    # similar loop for music subjects
+
+
+
 def populate_tutor(n=5):
+    """populates app.models.Tutor"""
 
     Tutor.objects.all().delete()
 
@@ -64,7 +90,11 @@ def populate_tutor(n=5):
 
 if __name__ == '__main__':
     # populate_locality()
-    print("populating Tutor module with dummy data...")
-    populate_tutor(50)
-    print("complete")
+
+    populate_subject()
+
+    # print("populating Tutor module with dummy data...")
+    # populate_tutor(50)
+    # print("complete")
+
     # populate_tutorsubjects()
