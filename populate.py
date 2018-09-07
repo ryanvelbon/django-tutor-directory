@@ -33,11 +33,15 @@ def populate_subject():
 
     # List generated from scripts/subject_list_academic.py
     ACADEMIC_SUBJECTS = ['ACCOUNTING', 'ARABIC', 'ART', 'BIOLOGY', 'BUSINESS STUDIES', 'CHEMISTRY', 'CLASSICAL CULTURE', 'COMMERCE', 'COMPUTING', 'DESIGN AND TECHNOLOGY', 'ECONOMICS', 'ENGLISH LANGUAGE', 'ENGLISH LITERATURE', 'ENVIRONMENTAL STUDIES', 'ETHICS', 'EUROPEAN STUDIES', 'FRENCH', 'GEOGRAPHY', 'GERMAN', 'GRAPHICAL COMMUNICATION', 'GREEK', 'HISTORY', 'HOME ECONOMICS', 'IL-MALTI', 'ITALIAN', 'LATIN', 'MATHEMATICS', 'MUSIC', 'PHYSICAL EDUCATION', 'PHYSICS', 'RELIGIOUS KNOWLEDGE',
-        'RUSSIAN', 'SOCIAL STUDIES', 'SPANISH', 'TEXTILES AND DESIGN']
-    # List generated from scripts/subject_list_academic.py
-    SPORTS_SUBJECTS = []
-    # List generated from scripts/subject_list_academic.py
-    MUSIC_SUBJECTS = []
+                            'RUSSIAN', 'SOCIAL STUDIES', 'SPANISH', 'TEXTILES AND DESIGN']
+
+    # List copied from privatmalta.com
+    SPORTS_SUBJECTS = ['Acrobatics',	'Archery',	'Athletics',	'Badminton',	'Baseball',	'Basketball',	'Bokwa',	'Boxing',	'Canoing',	'Clay Pigeon Shooting',	'Climbing',	'Cricket',	'Croquet',	'Cycling',	'Darts',	'Equestrian',	'Fencing',	'Football',	'Golf',	'Gymnastics',	'Handball',	'Hang Gliding',	'Hockey',	'Judo',	'Karate',	'Kayaking',	'Kick Boxing',	'Lacrosse',	'Martial Arts',	'Netball',	'Parkour / Free Running',	'Personal Fitness',	'Pilates',	'Raquetball',
+                        'Rowing',	'Rugby',	'Sailing',	'Snooker','Squash',	'Surfing',	'Swimming',	'Table Tennis',	'Tae Kwon Do',	'Tai Chi',	'Tennis',	'Triathalon',	'Water Polo',	'Weight Lifting / Body Building',	'Wrestling',	'Yoga',	'Zumba',]
+
+    # List copied from privatmalta.com
+    MUSIC_SUBJECTS = ['Accordion','Bagpipes','Banjo (4 string)','Banjo (5 string)','Baritone Horn','Bass Guitar','Bassoon','Cello','Clarinet','Composition','Conducting','Cornet','Double Bass','Euphonium','Flugel Horn','Flute','French Horn','Guitar','Harmonica','Harp','Keyboard','Lap Steel Guitar','Lute','Mandolin','Melodeon','Music Production','Music Technology','Music Theory','Oboe','Organ','Pedal Steel Guitar',
+                        'Percussion (Drums)','Piano','Piccolo','Recorder','Saxophone','Singing','Sitar','Tenor Horn','TinWhistle','Trombone','Trumpet','Tuba','Ukulele','Viola','Violin',]
 
     for subject in ACADEMIC_SUBJECTS:
         p = Subject.objects.get_or_create(
@@ -45,10 +49,17 @@ def populate_subject():
             name = subject,
         )[0]
 
-    # similar loop for sports subjects
+    for subject in SPORTS_SUBJECTS:
+        p = Subject.objects.get_or_create(
+            category = "sports",
+            name = subject,
+        )[0]
 
-    # similar loop for music subjects
-
+    for subject in MUSIC_SUBJECTS:
+        p = Subject.objects.get_or_create(
+            category = "music",
+            name = subject,
+        )[0]
 
 
 def populate_tutor(n=5):
@@ -91,7 +102,7 @@ def populate_tutor(n=5):
 if __name__ == '__main__':
     # populate_locality()
 
-    populate_subject()
+    # populate_subject()
 
     # print("populating Tutor module with dummy data...")
     # populate_tutor(50)

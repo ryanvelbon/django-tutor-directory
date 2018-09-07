@@ -10,6 +10,22 @@ class Locality(models.Model):
     class Meta:
         verbose_name_plural = 'localities'
 
+
+class Subject(models.Model):
+
+    CATEGORY_CHOICES = (
+        ('academic', 'academic'),
+        ('sports', 'sports'),
+        ('music', 'music'),
+    )
+
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+
+    def __str__(self):
+        return self.name
+
+
 class Tutor(models.Model):
 
     TITLE_CHOICES = (
@@ -57,16 +73,15 @@ class Tutor(models.Model):
     def __str__(self):
         return '%s %s %s' % (self.title, self.first_name, self.last_name)
 
-class Subject(models.Model):
 
-    CATEGORY_CHOICES = (
-        ('academic', 'academic'),
-        ('sports', 'sports'),
-        ('music', 'music'),
+class Course(models.Model):
+    LEVEL_CHOICES = (
+        ('Beginner', 'Beginner'),
+        ('Intermediate', 'Intermediate'),
+        ('Advanced', 'Advanced'),
     )
-
-    name = models.CharField(max_length=100)
-    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
-
-    def __str__(self):
-        return self.name
+    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
+    subject_category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+    level = models.CharField(max_length=40, choices=LEVEL_CHOICES)
+    price = models.PositiveSmallIntegerField()
