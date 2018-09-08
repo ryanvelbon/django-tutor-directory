@@ -4,7 +4,7 @@
 
 {% block content %}
   <h2>Register the courses you are offering:</h2>
-  <form method="post" id="registerCoursesForm" data-subjects-url="{% url 'ajax_load_subjects' %}" novalidate>
+  <form method="post" id="registerCoursesForm" data-subjects-url="{% url 'ajax_load_subjects' %}" data-levels-url="{% url 'ajax_load_levels' %}" novalidate>
     {% csrf_token %}
     <table>
       {{ form.as_table }}
@@ -16,16 +16,30 @@
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
     $("#id_category").change(function () {
+
+      var categoryId = $(this).val();  // get the selected category ID from the HTML input
+
       var url = $("#registerCoursesForm").attr("data-subjects-url");  // get the url of the `load_subjects` view
-      var subjectCategoryId = $(this).val();  // get the selected category ID from the HTML input
 
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/ajax/load-subjects/)
         data: {
-          'category': subjectCategoryId  // add the country id to the GET parameters
+          'category': categoryId  // add the category id to the GET parameters
         },
         success: function (data) {   // `data` is the return of the `load_subjects` view function
           $("#id_subject").html(data);  // replace the contents of the subject dropdown with the data that came from the server
+        }
+      });
+
+      var url = $("#registerCoursesForm").attr("data-levels-url");
+
+      $.ajax({
+        url: url,
+        data: {
+          'category': categoryId
+        },
+        success: function (data) {
+          $("#id_level").html(data);
         }
       });
 

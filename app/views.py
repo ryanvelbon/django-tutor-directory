@@ -3,7 +3,7 @@ from django.views.generic import CreateView, TemplateView, DetailView
 from django.shortcuts import render
 
 from .forms import RegisterForm, RegisterCoursesForm
-from .models import Tutor, Subject
+from .models import Tutor, Subject, Level
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -28,3 +28,7 @@ class TutorDetailView(DetailView):
 def load_subjects(request):
     subjects = Subject.objects.filter(category=request.GET.get('category')).order_by('name')
     return render(request, 'subject_dropdown_list_options.html', {'subjects': subjects})
+
+def load_levels(request):
+    levels = Level.objects.filter(category=request.GET.get('category')).order_by('id')
+    return render(request, 'dropdown_list_options_for_level.html', {'levels': levels})
