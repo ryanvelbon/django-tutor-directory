@@ -73,15 +73,19 @@ class Tutor(models.Model):
     def __str__(self):
         return '%s %s %s' % (self.title, self.first_name, self.last_name)
 
+class Level(models.Model):
+    # BUG: PENDING: Make the two fields unique_together
+    subject_category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
+    level = models.CharField(max_length=60)
+
+    def __str__(self):
+        return self.level
+
 
 class Course(models.Model):
-    LEVEL_CHOICES = (
-        ('Beginner', 'Beginner'),
-        ('Intermediate', 'Intermediate'),
-        ('Advanced', 'Advanced'),
-    )
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
     subject_category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    level = models.CharField(max_length=40, choices=LEVEL_CHOICES)
+    # level = models.CharField(max_length=40, choices=LEVEL_CHOICES)
+    level = models.ForeignKey(Level, on_delete=models.CASCADE)
     price = models.PositiveSmallIntegerField()

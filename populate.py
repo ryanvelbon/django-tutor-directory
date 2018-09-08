@@ -5,7 +5,7 @@ from django.conf import settings
 import django
 django.setup()
 
-from app.models import Locality, Subject, Tutor
+from app.models import Locality, Subject, Level, Tutor
 
 import random
 from faker import Faker
@@ -61,6 +61,33 @@ def populate_subject():
             name = subject,
         )[0]
 
+def populate_level():
+    ACADEMIC_LEVELS = ['Form 1', 'Form 2', 'Form 3', 'Form 4', 'Form 5', 'Intermediate', 'A Level', 'Casual']
+    SPORTS_LEVELS = ['Beginner', 'Intermediate', 'Advanced', 'Professional']
+    MUSIC_LEVELS = ['Grade I', 'Grade II', 'Grade III', 'Grade IV', 'Grade V', 'Grade VI', 'Grade VII', 'Grade VIII', 'Casual']
+
+    Level.objects.all().delete()
+
+    # BUG: Not DRY code, you have already declared the subject categories in models.py
+
+    for level_name in ACADEMIC_LEVELS:
+        p = Level.objects.get_or_create(
+            subject_category = 'academic',
+            level = level_name,
+        )[0]
+    for level_name in SPORTS_LEVELS:
+        p = Level.objects.get_or_create(
+            subject_category = 'sports',
+            level = level_name,
+        )[0]
+    for level_name in MUSIC_LEVELS:
+        p = Level.objects.get_or_create(
+            subject_category = 'music',
+            level = level_name,
+        )[0]
+
+
+
 
 def populate_tutor(n=5):
     """populates app.models.Tutor"""
@@ -109,3 +136,5 @@ if __name__ == '__main__':
     # print("complete")
 
     # populate_tutorsubjects()
+
+    populate_level()
