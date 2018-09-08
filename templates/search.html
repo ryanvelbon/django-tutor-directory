@@ -5,32 +5,97 @@
 {% block title %}Search Results{% endblock %}
 
 {% block content %}
-  <div class="container" id="tutor_cards_container">
-    {% for i in "xxx" %}
-    <div class="card">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-          <img class="card-img-top" src={% static "images/img_avatar1.png" %} alt="Card image" style="width:100%">
-          <p style="text-align:center">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-          <p style="text-align:center"><small>46 reviews</small></p>
+<div class="row">
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!_L_E_F_T_!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <div class="col-lg-3">
+    <div class="container" id="left_panel">
+      <div class="card bg-info text-white">
+        <form action="/action_page.php">
+          <h4>Filters</h4>
+          <div class="form-check">
+            <label class="form-check-label" for="check1">
+              <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">Wheelchair-accessible
+            </label>
           </div>
-          <div class="col-sm-9">
-            <div class="card-body">
-              <h4 class="card-title">Dr. Thomas Scicluna</h4>
-              <p>
-                <a href="#" class="card-link">99 983 475</a>
-                <a href="#" class="card-link">tscicluna@gmail.com</a>
-              </p>
-              <small><em>Triq id-Dundjan, Ħal Qormi</em></small>
-              <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-              <kbd>physics</kbd> <kbd>mathematics</kbd>
-            </div>
+          <div class="form-check">
+            <label class="form-check-label" for="check2">
+              <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">Streamed Classes
+            </label>
           </div>
-
-        </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="checkbox" class="form-check-input">Lessons in English
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">Apply filters</button>
+        </form>
       </div>
     </div>
-    {% endfor %}
   </div>
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!_R_I_G_H_T_!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <div class="col-lg-9">
+    <div class="container" id="tutor_cards_container">
+      <!-- RESULTS HEADER (start) -->
+      <div class="card">
+        <div class="row">
+          <div class="col-lg-6">
+            <p>3 tutors found</p>
+          </div>
+          <div class="col-lg-6">
+            <form action="">
+              <div class="form-group">
+                <label for="sortby_dropdown">Sort by:</label>
+                <select onchange="this.form.submit()" class="form-control" id="sortby_dropdown">
+                  <option>Relevance</option>
+                  <option>Rating</option>
+                  <option>Price</option>
+                  <option>Distance</option>
+                </select>
+                <br>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- RESULTS HEADER (end) -->
+      <!-- TUTOR CARDS (start) -->
+      {% for i in "xxx" %}
+      <div class="card">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+            <img class="card-img-top" src={% static "images/img_avatar1.png" %} alt="Card image" style="width:100%">
+            <p style="text-align:center">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p style="text-align:center"><small>46 reviews</small></p>
+            </div>
+            <div class="col-lg-9">
+              <div class="card-body">
+                <h4 class="card-title">Dr. Thomas Scicluna</h4>
+                <p>
+                  <a href="#" class="card-link">99 983 475</a>
+                  <a href="#" class="card-link">tscicluna@gmail.com</a>
+                </p>
+                <small><em>Triq id-Dundjan, Ħal Qormi</em></small>
+                <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <kbd>physics</kbd> <kbd>mathematics</kbd>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- TUTOR CARDS (finish) -->
+  </div>
+</div>
+
+
+
+
+
 {% endblock %}
