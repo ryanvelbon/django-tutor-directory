@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block title %}Search Results{% endblock %}
 
 {% block content %}
@@ -9,7 +11,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-3">
-          <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+          <img class="card-img-top" src={% static "images/img_avatar1.png" %} alt="Card image" style="width:100%">
           <p style="text-align:center">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
           <p style="text-align:center"><small>46 reviews</small></p>
           </div>
