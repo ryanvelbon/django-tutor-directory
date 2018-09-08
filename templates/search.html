@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+  <div class="container" id="tutor_cards_container">
+    {% for i in "xxx" %}
+    <div class="card">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+          <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
+          <p style="text-align:center">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+          <p style="text-align:center"><small>46 reviews</small></p>
+          </div>
+          <div class="col-sm-9">
+            <div class="card-body">
+              <h4 class="card-title">Dr. Thomas Scicluna</h4>
+              <p>
+                <a href="#" class="card-link">99 983 475</a>
+                <a href="#" class="card-link">tscicluna@gmail.com</a>
+              </p>
+              <small><em>Triq id-Dundjan, Ħal Qormi</em></small>
+              <p class="card-text">Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+              <kbd>physics</kbd> <kbd>mathematics</kbd>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
