@@ -72,17 +72,17 @@ def populate_level():
 
     for level_name in ACADEMIC_LEVELS:
         p = Level.objects.get_or_create(
-            subject_category = 'academic',
+            category = 'academic',
             level = level_name,
         )[0]
     for level_name in SPORTS_LEVELS:
         p = Level.objects.get_or_create(
-            subject_category = 'sports',
+            category = 'sports',
             level = level_name,
         )[0]
     for level_name in MUSIC_LEVELS:
         p = Level.objects.get_or_create(
-            subject_category = 'music',
+            category = 'music',
             level = level_name,
         )[0]
 
@@ -127,14 +127,14 @@ def populate_tutor(n=5):
 #     pass
 
 if __name__ == '__main__':
+    print("Populating DB . . .")
+
     # populate_locality()
-
+    # populate_level()
+    #
     # populate_subject()
-
-    # print("populating Tutor module with dummy data...")
     # populate_tutor(50)
-    # print("complete")
 
     # populate_tutorsubjects()
 
-    populate_level()
+    print("Complete!")

@@ -75,7 +75,7 @@ class Tutor(models.Model):
 
 class Level(models.Model):
     # BUG: PENDING: Make the two fields unique_together
-    subject_category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
+    category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
     level = models.CharField(max_length=60)
 
     def __str__(self):
@@ -84,7 +84,7 @@ class Level(models.Model):
 
 class Course(models.Model):
     tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
-    subject_category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
+    category = models.CharField(max_length=20, choices=Subject.CATEGORY_CHOICES)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     # level = models.CharField(max_length=40, choices=LEVEL_CHOICES)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)

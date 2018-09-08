@@ -15,14 +15,14 @@
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script>
-    $("#id_subject_category").change(function () {
+    $("#id_category").change(function () {
       var url = $("#registerCoursesForm").attr("data-subjects-url");  // get the url of the `load_subjects` view
       var subjectCategoryId = $(this).val();  // get the selected category ID from the HTML input
 
       $.ajax({                       // initialize an AJAX request
         url: url,                    // set the url of the request (= localhost:8000/ajax/load-subjects/)
         data: {
-          'subject_category': subjectCategoryId  // add the country id to the GET parameters
+          'category': subjectCategoryId  // add the country id to the GET parameters
         },
         success: function (data) {   // `data` is the return of the `load_subjects` view function
           $("#id_subject").html(data);  // replace the contents of the subject dropdown with the data that came from the server

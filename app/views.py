@@ -26,5 +26,5 @@ class TutorDetailView(DetailView):
     template_name = 'tutor_detail.html'
 
 def load_subjects(request):
-    subjects = Subject.objects.filter(category=request.GET.get('subject_category')).order_by('name')
+    subjects = Subject.objects.filter(category=request.GET.get('category')).order_by('name')
     return render(request, 'subject_dropdown_list_options.html', {'subjects': subjects})

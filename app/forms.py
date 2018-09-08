@@ -9,7 +9,7 @@ class RegisterForm(ModelForm):
 class RegisterCoursesForm(ModelForm):
     class Meta:
         model = Course
-        fields = ('tutor', 'subject_category', 'subject', 'level', 'price')
+        fields = ('tutor', 'category', 'subject', 'level', 'price')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
