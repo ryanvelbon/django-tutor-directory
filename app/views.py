@@ -3,7 +3,7 @@ from django.views.generic import CreateView, TemplateView, DetailView
 from django.shortcuts import render
 
 from .forms import RegisterForm, RegisterCoursesForm
-from .models import Tutor, Subject, Level
+from .models import Tutor, Subject, Level, Course
 
 class HomePageView(TemplateView):
     template_name = 'home.html'
@@ -21,9 +21,11 @@ class RegisterCoursesView(CreateView):
     # success_url
     template_name = 'register_courses.html'
 
-class TutorDetailView(DetailView):
-    model = Tutor
-    template_name = 'tutor_detail.html'
+def tutor_view(request, pk):
+    my_context = {
+        'tutor': Tutor.objects.get(pk=pk),
+        'courses': Course.objects.filter(tutor=pk)}
+    return render(request, 'tutor_detail.html', context=my_context)
 
 class SearchView(TemplateView):
     template_name = 'search.html'

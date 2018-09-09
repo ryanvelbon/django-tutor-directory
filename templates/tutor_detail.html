@@ -1,32 +1,84 @@
 {% extends 'base.html' %}
 
-{% block title %}{{object}}{% endblock %}
+{% load staticfiles %}
+
+{% block other_stylesheets %}
+<link rel="stylesheet" href={% static "css/tutor_detail.css" %}>
+
+{% endblock %}
+
+{% block title %}{{tutor}}{% endblock %}
 
 {% block content %}
-<div class="article-entry">
-  <h2>{{object}}</h2>
-  <p>{{object.address}}</p>
-  <p>{{object.locality}}</p>
-  <p>Registered: {{object.registration_date}}</p>
-  <p>{{object.tel}}</p>
-  <p>{{object.mob}}</p>
-  <p>{{object.email}}</p>
+  <div id="section1" class="jumbotron">
+    <h1>Nicki Gonzalez</h1>
+    <h2>Session & Demo Vocalist</h2>
+    <p>&#9733;&#9733;&#9733;&#9733;&#9733;55 reviews (51 Verified)</p>
+    <p>Los Angeles, CA, USA</p>
+  </div>
+  <div id="section2" class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Bio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Reviews (55)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Interview</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <button type="button" class="btn btn-success btn-lg" style="float: right;">Contact Nicki</button>
+      </div>
+    </div>
+  </div>
+  <div id="section3" class="container">
+    <div class="row">
+      <div class="col-sm-8">
+        <div id="bio" class="container">
+          <p>Maecenas dapibus consectetur turpis sit amet finibus. Nam mauris velit, vulputate in ultricies et, lacinia at est. Etiam accumsan, nisl venenatis tristique convallis, urna mauris pharetra quam, sit amet egestas odio quam nec nisi. Quisque semper ligula rhoncus sem lobortis sodales.</p>
+          <p>Donec pellentesque mauris sit amet sapien elementum dapibus. Vivamus interdum nisl ligula, sollicitudin tempor est iaculis vitae. Suspendisse eu purus eu velit ultrices vestibulum. Vivamus nec neque eu ante viverra ultricies. Donec maximus imperdiet orci, et venenatis nisi aliquam sit amet. In congue odio in lectus porta facilisis. Donec accumsan sem aliquam tortor viverra, in semper diam ornare. In hac habitasse platea dictumst. Phasellus nec est vitae odio congue sollicitudin. Nullam ut gravida dui, sed luctus sem. Nam dictum, purus rhoncus malesuada dapibus, sapien dui consectetur quam, eget ullamcorper metus nisi ac metus. Etiam dapibus laoreet tortor non suscipit. Morbi pretium augue nibh, a aliquet tortor lacinia vel. Morbi eget velit mauris. Quisque varius ligula eget mollis porta. In eget tincidunt urna.</p>
+          <p>Morbi efficitur condimentum molestie. Proin convallis risus non blandit molestie. Aenean tincidunt nibh vitae nunc suscipit, quis mattis magna pellentesque. </p>
+        </div>
+        <div id="courses" class="container">
+          <h3>Courses</h3>
+            <table id="coursesTable" class="table" style="width:100%">
+              <thead class="thead-light">
+                <tr>
+                  <th>Category</th>
+                  <th>Subject</th>
+                  <th>Level</th>
+                  <th>Price</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for course in 'xxxxxxx' %}
+                <tr>
+                  <td>academic</td>
+                  <td>Biology</td>
+                  <td>Form 2</td>
+                  <td>€10</td>
+                  <td> <button type="button" class="btn btn-outline-success">Book now!</button> </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <div id="reviews" class="container">
 
-  <h3>Subjects</h3>
-  <table style="width:100%">
-  <tr>
-    <th>Subject Type</th>
-    <th>Subject</th>
-    <th>Level</th>
-    <th></th>
-  </tr>
-  <tr>
-    <td>-</td>
-    <td>-</td>
-    <td>-</td>
-    <td> <button type="button" name="button">Book now!</button> </td>
-  </tr>
-</table>
+        </div>
+      </div>
+      <div class="col-sm-4">
 
-</div>
-{% endblock content %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
