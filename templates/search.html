@@ -9,10 +9,10 @@
   <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
   <!--!!!!!!!!!!!!!!!!_L_E_F_T_!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
   <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-  <div class="col-lg-3">
+  <div class="col-lg-2">
     <div class="container" id="left_panel">
       <div class="card bg-info text-white">
-        <form action="/action_page.php">
+        <form action="#">
           <h4>Filters</h4>
           <div class="form-check">
             <label class="form-check-label" for="check1">
@@ -32,12 +32,23 @@
           <button type="submit" class="btn btn-primary">Apply filters</button>
         </form>
       </div>
+      <div class="card bg-info text-white">
+        <form action="#">
+          <h4>Search Tutor</h4>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Enter tutor's name . . .">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+             </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-  <!--!!!!!!!!!!!!!!!!_R_I_G_H_T_!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!_C_E_N_T_E_R!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
   <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-  <div class="col-lg-9">
+  <div class="col-lg-8">
     <div class="container" id="tutor_cards_container">
       <!-- RESULTS HEADER (start) -->
       <div class="card">
@@ -92,6 +103,13 @@
     </div>
     <!-- TUTOR CARDS (finish) -->
   </div>
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!_R_I_G_H_T_!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+  <div class="col-lg-2">
+    <img src={% static "images/advert.gif" %} style="width:100%">
+  </div>
+
 </div>
 
 

@@ -9,6 +9,8 @@ urlpatterns = [
     path('tutors/<int:pk>', views.TutorDetailView.as_view(), name='tutor_detail'),
     path('search', views.SearchView.as_view(), name='search'),
 
+    path('testing', views.ForTestingView.as_view()),
+
     path('ajax/load-subjects/', views.load_subjects, name='ajax_load_subjects'),
     path('ajax/load-levels/', views.load_levels, name='ajax_load_levels'),
 ]

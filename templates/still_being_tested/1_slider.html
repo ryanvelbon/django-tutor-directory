@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Testing Page</h1>
+  <div style="color:red">
+    <h4>bootstrap-slider.js</h4>
+    <p>Mission: Update the values at the sides when slider moves.</p>
+    <p>Problem: 'change' event not being registered.</p>
+  </div>
+  <p>Number of students:</p>
+  <b id="classSizeMin">€ 10</b>
+  <input id="classSize"
+            onclick="foobar()"
+            type="text"
+            class="span2"
+            value=""
+            data-slider-min="1"
+            data-slider-max="30"
+            data-slider-step="1"
+            data-slider-value="[6,15]"/>
+  <b id="classSizeMax">€ 1000</b>
+{% endblock %}
+
+{% block other_js_scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/bootstrap-slider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.2.0/css/bootstrap-slider.min.css">
+{% endblock %}
+
+{% block js_code %}
+  <script>
+    var mySlider = new Slider('#classSize', {});
+
+    document.getElementById("classSize").addEventListener('click', function(){
+      alert("SLID!");
+    });
+
+    // slider.getValue()[0] // min value
+    // slider.getValue()[1] // max value
+
+    function foobar() {
+      alert("You clicked!");
+      document.getElementById("classSizeMin").innerHTML = "LOL";
+    }
+
+
+  </script>
+{% endblock %}

@@ -28,9 +28,12 @@ class TutorDetailView(DetailView):
 class SearchView(TemplateView):
     template_name = 'search.html'
 
+class ForTestingView(TemplateView):
+    template_name = 'still_being_tested/1_slider.html'
+
 def load_subjects(request):
     subjects = Subject.objects.filter(category=request.GET.get('category')).order_by('name')
-    return render(request, 'subject_dropdown_list_options.html', {'subjects': subjects})
+    return render(request, 'dropdown_list_options_for_subject.html', {'subjects': subjects})
 
 def load_levels(request):
     levels = Level.objects.filter(category=request.GET.get('category')).order_by('id')
