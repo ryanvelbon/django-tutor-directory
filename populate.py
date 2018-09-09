@@ -123,7 +123,7 @@ def populate_tutor(n=5):
         )[0]
 
 
-def populate_course(n=30):
+def populate_course(n=5):
 
     Course.objects.all().delete()
 
@@ -134,20 +134,20 @@ def populate_course(n=30):
         lowest_level_offered_by_tutor = random.randint(1, num_of_levels_for_category-num_of_levels_offered_by_tutor+1)
         qs_range_min = lowest_level_offered_by_tutor-1
         qs_range_max = lowest_level_offered_by_tutor-1+num_of_levels_offered_by_tutor
-        levels_offered_by_tutor = Level.objects.filter(category=random_category)[qs_range_min:qs_range_max].values_list('level', flat=True)
+        levels_offered_by_tutor = Level.objects.filter(category=random_category)[qs_range_min:qs_range_max]
 
-        print("-"*50)
-        print('Tutor teaches this subject at %s levels.' % (num_of_levels_offered_by_tutor))
-        print(levels_offered_by_tutor)
-        print("-"*50)
+        random_tutor = random.choice(Tutor.objects.all())
+        random_subject = random.choice(Subject.objects.filter(category=random_category))
 
-        # p = Course.objects.get_or_create(
-        #     tutor = random.choice(Tutor.objects.all()),
-        #     category = random_category,
-        #     subject = random.choice(Subject.objects.filter(category=random_category)),
-        #     level = random.choice(Level.objects.filter(category=random_category)),
-        #     price = random.randint(1,10),
-        # )[0]
+        for level in levels_offered_by_tutor:
+
+            p = Course.objects.get_or_create(
+                tutor = random_tutor,
+                category = random_category,
+                subject = random_subject,
+                level = level,
+                price = random.randint(1,10),
+            )[0]
 
 if __name__ == '__main__':
     print("Populating DB . . .")
@@ -158,6 +158,6 @@ if __name__ == '__main__':
     # populate_subject()
     # populate_tutor(50)
 
-    populate_course()
+    # populate_course(200)
 
     print("Complete!")
