@@ -89,3 +89,6 @@ class Course(models.Model):
     # level = models.CharField(max_length=40, choices=LEVEL_CHOICES)
     level = models.ForeignKey(Level, on_delete=models.CASCADE)
     price = models.PositiveSmallIntegerField()
+
+    def __str__(self):
+        return "%s (%s) - %s" % (self.subject, self.level, self.tutor)

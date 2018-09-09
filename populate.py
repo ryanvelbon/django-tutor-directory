@@ -5,7 +5,7 @@ from django.conf import settings
 import django
 django.setup()
 
-from app.models import Locality, Subject, Level, Tutor
+from app.models import Locality, Subject, Level, Tutor, Course
 
 import random
 from faker import Faker
@@ -123,8 +123,19 @@ def populate_tutor(n=5):
         )[0]
 
 
-# def populate_tutorsubjects():
-#     pass
+def populate_course(n=30):
+
+    Course.objects.all().delete()
+
+    for entry in range(n):
+        random_category = Subject.CATEGORY_CHOICES[random.randint(0,len(Subject.CATEGORY_CHOICES)-1)][0]
+        p = Course.objects.get_or_create(
+            tutor = random.choice(Tutor.objects.all()),
+            category = random_category,
+            subject = random.choice(Subject.objects.filter(category=random_category)),
+            level = random.choice(Level.objects.filter(category=random_category)),
+            price = random.randint(1,10),
+        )[0]
 
 if __name__ == '__main__':
     print("Populating DB . . .")
@@ -135,6 +146,6 @@ if __name__ == '__main__':
     # populate_subject()
     # populate_tutor(50)
 
-    # populate_tutorsubjects()
+    populate_course()
 
     print("Complete!")
