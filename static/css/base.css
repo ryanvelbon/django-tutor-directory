@@ -1,0 +1,17 @@
+#footer {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+#footer li {
+  padding-bottom: 6px;
+}
+
+#footer a:hover {
+  text-decoration: none;
+}
+
+.fa {
+  padding: 14px;
+  font-size: 30px;
+}

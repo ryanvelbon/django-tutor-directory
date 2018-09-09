@@ -1,4 +1,76 @@
+#section1 {
+  margin-bottom: 0px;
+}
+
+#section2 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 #coursesTable th,
 #coursesTable td {
-    text-align: center;
+  text-align: center;
 }
+
+#coursesTable th {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.card {
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.review img {
+  float: left;
+  padding-right: 15px;
+}
+
+.card-header a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-header p {
+  margin-bottom: 6px;
+}
+
+#more_photos img {
+  float: left;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+/* FOR TESTING PURPOSES, UNCOMMENT EVERYTHING BELOW */
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+/* ---------------------------------------------------- */
+
+/*
+#section1 {
+  background-color: #AFA;
+}
+
+#section2 {
+  background-color: #FAA;
+}
+
+#section3 {
+  background-color: #AAF;
+}
+
+.card-header {
+  background-color: #FFA;
+}
+
+.card-body {
+  background-color: #AFF;
+}
+
+.advert {
+  background-color: #FAF;
+} */

@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -7,6 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href={% static "css/base.css" %}>
 
     {% block other_stylesheets %}
     {% endblock %}
@@ -18,6 +22,40 @@
       {% block content %}
       {% endblock %}
     </main>
+
+    <div id="footer" class="jumbotron">
+      <div class="row">
+        <div class="col-sm-3">
+          <p style="width: 70%;">PrivatMalta is an online phone directory of Malta's private tutors.</p>
+          <p></p>
+          <p style="margin-bottom: 1px;"><strong>info@privatmalta.com</strong></p>
+          <p>+(356) 99 123 123</p>
+        </div>
+        <div class="col-sm-3">
+          <ul class="list-unstyled">
+            <li><a href="#">Register as a tutor</a></li>
+            <li><a href="#">Advertise</a></li>
+            <li><a href="#">Sign in</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Users Reviews</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <ul class="list-unstyled">
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <a href="#" class="fa fa-facebook"></a>
+          <a href="#" class="fa fa-twitter"></a>
+          <a href="#" class="fa fa-youtube"></a>
+          <a href="#" class="fa fa-instagram"></a>
+        </div>
+      </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
