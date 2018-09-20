@@ -5,7 +5,7 @@ from django.conf import settings
 import django
 django.setup()
 
-from app.models import Locality, Subject, Level, Tutor, Course
+from app.models import Locality, Subject, Level, Tutor, TutorGalleryPic, Course
 
 import random
 from faker import Faker
@@ -87,6 +87,15 @@ def populate_level():
         )[0]
 
 
+def create_tutorgallerypic_object(tutor_entry):
+    path_to_samples_folder = "/images/tutors-other/samples-for-testing/"
+    preupload_filename = random.choice(os.listdir("{}{}".format(settings.MEDIA_DIR, path_to_samples_folder)))
+    print(preupload_filename)
+
+    tutorgallerypic_entry = TutorGalleryPic.objects.get_or_create(
+        tutor = tutor_entry,
+        image_path = "{}{}".format(path_to_samples_folder, preupload_filename),
+    )[0]
 
 
 def populate_tutor(n=5):
@@ -96,15 +105,29 @@ def populate_tutor(n=5):
 
     for entry in range(n):
         full_name = fakegen.name()
-        p = Tutor.objects.get_or_create(
+        path_to_samples_folder = "/images/tutors-profile/samples-for-testing/"
+        preupload_filename = random.choice(
+            os.listdir("{}{}".format(settings.MEDIA_DIR, path_to_samples_folder))
+        )
+        tutor_entry = Tutor.objects.get_or_create(
             title = Tutor.TITLE_CHOICES[random.randint(0,len(Tutor.TITLE_CHOICES)-1)][0],
             first_name = full_name.split(" ")[0],
             last_name = full_name.split(" ")[-1],
             address = fakegen.city(),
             locality = random.choice(Locality.objects.all()),
 
-            bio = fakegen.paragraph(
-                nb_sentences = 10,
+            bio1 = fakegen.paragraph(
+                nb_sentences = 5,
+                variable_nb_sentences = True,
+                ext_word_list = None,
+            ),
+            bio2 = fakegen.paragraph(
+                nb_sentences = 15,
+                variable_nb_sentences = True,
+                ext_word_list = None,
+            ),
+            bio3 = fakegen.paragraph(
+                nb_sentences = 2,
                 variable_nb_sentences = True,
                 ext_word_list = None,
             ),
@@ -120,7 +143,11 @@ def populate_tutor(n=5):
             ),
 
             email = fakegen.email(),
+
+            profile_pic = "{}{}".format(path_to_samples_folder, preupload_filename),
         )[0]
+        for i in range(random.randint(2,7)):
+            create_tutorgallerypic_object(tutor_entry)
 
 
 def populate_course(n=5):
@@ -154,10 +181,13 @@ if __name__ == '__main__':
 
     # populate_locality()
     # populate_level()
-    #
     # populate_subject()
-    # populate_tutor(50)
 
-    # populate_course(200)
+    populate_tutor(5)
+    populate_course(10)
+
+    # Course.objects.all().delete()
+    # TutorGalleryPic.objects.all().delete()
+    # Tutor.objects.all().delete()
 
     print("Complete!")

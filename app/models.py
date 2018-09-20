@@ -1,5 +1,5 @@
 from django.db import models
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, MaxValueValidator, MinValueValidator
 
 class Locality(models.Model):
     name = models.CharField(max_length=100)
@@ -28,6 +28,12 @@ class Subject(models.Model):
 
 class Tutor(models.Model):
 
+    def path_and_filename(instance, filename):
+        upload_to = 'images/tutors-profile'
+        ext = filename.split('.')[-1]
+        filename = '{}.{}'.format(uuid4().hex, ext)
+        return os.path.join(upload_to, filename)
+
     TITLE_CHOICES = (
         ('Mr', 'Mr'),
         ('Mrs', 'Mrs'),
@@ -50,7 +56,9 @@ class Tutor(models.Model):
 
     registration_date = models.DateTimeField(auto_now_add=True)
 
-    bio = models.TextField()
+    bio1 = models.TextField()
+    bio2 = models.TextField()
+    bio3 = models.TextField()
 
     phone_regex = RegexValidator(regex=r'^\d{8}$', message="Phone number must be exactly 8 digits long.")
 
@@ -70,8 +78,22 @@ class Tutor(models.Model):
 
     email = models.EmailField()
 
+    profile_pic = models.ImageField(upload_to=path_and_filename)
+
     def __str__(self):
         return '%s %s %s' % (self.title, self.first_name, self.last_name)
+
+
+class TutorGalleryPic(models.Model):
+    def path_and_filename(instance, filename):
+        upload_to = 'images/tutors-other'
+        ext = filename.split('.')[-1]
+        filename = '{}.{}'.format(uuid4().hex, ext)
+        return os.path.join(upload_to, filename)
+
+    tutor = models.ForeignKey(Tutor, related_name='images', on_delete = models.DO_NOTHING)
+    image_path = models.ImageField(upload_to=path_and_filename)
+
 
 class Level(models.Model):
     # BUG: PENDING: Make the two fields unique_together
@@ -92,3 +114,12 @@ class Course(models.Model):
 
     def __str__(self):
         return "%s (%s) - %s" % (self.subject, self.level, self.tutor)
+
+class Review(models.Model):
+    tutor = models.ForeignKey(Tutor, on_delete=models.CASCADE)
+    # reviewer_fb_id =
+    rating = models.PositiveSmallIntegerField(
+        validators = [MaxValueValidator(5), MinValueValidator(1)]
+    )
+    review_text = models.TextField()
+    review_date = models.DateTimeField(auto_now_add=True)

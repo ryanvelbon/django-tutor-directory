@@ -11,10 +11,10 @@
 
 {% block content %}
   <div id="section1" class="jumbotron">
-    <h1>Nicki Gonzalez</h1>
+    <h1>{{tutor}}</h1>
     <h2>Session & Demo Vocalist</h2>
     <p>&#9733;&#9733;&#9733;&#9733;&#9733;55 reviews (51 Verified)</p>
-    <p>Los Angeles, CA, USA</p>
+    <p>{{tutor.address}}</p>
   </div>
   <div id="section2" class="container">
     <div class="row">
@@ -35,7 +35,7 @@
         </ul>
       </div>
       <div class="col-sm-6">
-        <button type="button" class="btn btn-success btn-lg" style="float: right;">Contact Nicki</button>
+        <button type="button" class="btn btn-success btn-lg" style="float: right;">Contact {{ tutor.first_name }}</button>
       </div>
     </div>
   </div>
@@ -43,9 +43,9 @@
     <div style="margin-top: 0px;" class="row">
       <div class="col-sm-8">
         <div id="bio" class="container">
-          <p style="padding-top: 50px;"><strong>Maecenas dapibus consectetur turpis sit amet finibus. Nam mauris velit, vulputate in ultricies et, lacinia at est. Etiam accumsan, nisl venenatis tristique convallis, urna mauris pharetra quam, sit amet egestas odio quam nec nisi. Quisque semper ligula rhoncus sem lobortis sodales.</strong></p>
-          <p>Donec pellentesque mauris sit amet sapien elementum dapibus. Vivamus interdum nisl ligula, sollicitudin tempor est iaculis vitae. Suspendisse eu purus eu velit ultrices vestibulum. Vivamus nec neque eu ante viverra ultricies. Donec maximus imperdiet orci, et venenatis nisi aliquam sit amet. In congue odio in lectus porta facilisis. Donec accumsan sem aliquam tortor viverra, in semper diam ornare. In hac habitasse platea dictumst. Phasellus nec est vitae odio congue sollicitudin. Nullam ut gravida dui, sed luctus sem. Nam dictum, purus rhoncus malesuada dapibus, sapien dui consectetur quam, eget ullamcorper metus nisi ac metus. Etiam dapibus laoreet tortor non suscipit. Morbi pretium augue nibh, a aliquet tortor lacinia vel. Morbi eget velit mauris. Quisque varius ligula eget mollis porta. In eget tincidunt urna.</p>
-          <p><strong>Morbi efficitur condimentum molestie. Proin convallis risus non blandit molestie. Aenean tincidunt nibh vitae nunc suscipit, quis mattis magna pellentesque.</strong></p>
+          <p style="padding-top: 50px;"><strong>{{tutor.bio1}}</strong></p>
+          <p>{{tutor.bio2}}</p>
+          <p><strong>{{tutor.bio3}}</strong></p>
         </div>
         <hr>
         <div id="courses" class="container">
@@ -61,12 +61,12 @@
                 </tr>
               </thead>
               <tbody>
-                {% for course in 'xxxxxxx' %}
+                {% for course in courses %}
                 <tr>
-                  <td>academic</td>
-                  <td>Biology</td>
-                  <td>Form 2</td>
-                  <td>€10</td>
+                  <td>{{course.category}}</td>
+                  <td>{{course.subject}}</td>
+                  <td>{{course.level}}</td>
+                  <td>€ {{course.price}}</td>
                   <td> <button type="button" class="btn btn-outline-success">Book now!</button> </td>
                 </tr>
                 {% endfor %}
@@ -116,6 +116,9 @@
         </div>
         <div class="card advert">
           <p>advert</p>
+        </div>
+        <div class="card">
+          lolol
         </div>
       </div>
     </div>
