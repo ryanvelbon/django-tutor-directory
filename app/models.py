@@ -78,7 +78,8 @@ class Tutor(models.Model):
 
     email = models.EmailField()
 
-    profile_pic = models.ImageField(upload_to=path_and_filename)
+    # BUG: null=True necessary?
+    profile_pic = models.ImageField(upload_to=path_and_filename, null=True)
 
     def __str__(self):
         return '%s %s %s' % (self.title, self.first_name, self.last_name)

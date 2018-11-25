@@ -4,7 +4,7 @@ from app.models import Tutor, Course, Subject, Level
 class RegisterForm(ModelForm):
     class Meta:
         model = Tutor
-        exclude = ['registration_date']
+        exclude = ['registration_date', 'profile_pic']
 
 class RegisterCoursesForm(ModelForm):
     class Meta:
