@@ -100,8 +100,8 @@
             <h5>More photos</h5>
           </div>
           <div class="card-body">
-            {% for i in "xxxxxxxxxxxx" %}
-              <img src={% static "images/placeholder.png" %} style="width:40px">
+            {% for img in gallery %}
+              <img src="{{ MEDIA_URL }}{{ img.image_path }}" alt="failed to load" style="width:40px">
             {% endfor %}
           </div>
         </div>
